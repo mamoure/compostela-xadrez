@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Compostela Xadrez</title>
+
+    <!-- Leaflet CSS -->
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  />
+
+    <!-- CSS propio -->
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <!-- Pantalla de bienvenida -->
+    <div id="welcome-screen">
+        <h1>Compostela Xadrez</h1>
+        <button id="show-map">Ver o mapa →</button>
+    </div>
+
+    <div class="container">
+        <!-- Panel izquierdo con el mapa -->
+        <div class="left-panel">
+            <div id="map"></div>
+        </div>
+
+        <!-- Panel derecho con lista -->
+        <div class="right-panel" id="site-list">
+            <!-- Contenedor de items -->
+            <div class="items-wrapper"></div>
+        </div>
+
+    </div>
+
+    <!-- Leaflet JS -->
+    <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
+
+    <!-- JS propio -->
+    <script src="js/map.js"></script>
+</body>
+</html>
+
