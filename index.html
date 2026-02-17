@@ -18,10 +18,46 @@
 </head>
 
 <body>
-    <!-- Pantalla de bienvenida -->
-    <div id="welcome-screen">
-        <h1>Compostela Xadrez</h1>
-        <button id="show-map">Ver o mapa →</button>
+    <!-- Contenedor de pantallas de bienvenida -->
+    <div id="intro-screens">
+        <!-- Pantalla de bienvenida azul -->
+        <div id="welcome-screen">
+            <h1>Compostela Xadrez</h1>
+            <div class="scroll-arrow">
+                <svg version="1.1" id="Capa_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                x="0px" y="0px" viewBox="0 0 425.197 425.197" enable-background="new 0 0 425.197 425.197"  xml:space="preserve">
+                <line fill="none" stroke="#FFFFFF" stroke-width="30" stroke-miterlimit="10" x1="80.193" y1="328.778" x2="342.536" y2="328.778"/>
+                <line fill="none" stroke="#FFFFFF" stroke-width="30" stroke-miterlimit="10" x1="327.527" y1="343.751" x2="327.527" y2="81.445"/>
+                <line fill="none" stroke="#FFFFFF" stroke-width="30" stroke-miterlimit="10" x1="80.193" y1="81.445" x2="327.527" y2="328.778"/>
+                </svg>
+            </div>
+        </div>
+
+        <!-- Segunda pantalla blanca -->
+        <div id="second-screen">
+                <div class="second-content">
+                    <h2>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas elementum mauris hendrerit urna posuere,
+                        non ullamcorper quam varius. Donec finibus suscipit enim, ut hendrerit orci feugiat eget. Nam aliquam odio lacus,
+                        vel ultricies est scelerisque quis. Cras dui felis, facilisis in sollicitudin nec, rhoncus ac arcu. Integer
+                        pellentesque posuere pharetra. Praesent sed nisl sem. Quisque a mi non est facilisis luctus ac quis magna.
+                        Integer blandit orci eget neque consectetur tempor. Donec euismod consequat nulla, quis finibus odio lacinia
+                        nec. Ut blandit fermentum felis sit amet facilisis. Sed quam magna, tristique vel lorem vitae, finibus elementum enim.
+                        Nullam porttitor, dolor in condimentum tempor, libero nunc viverra enim, et fermentum dolor lectus vulputate eros.
+                        Etiam nec quam condimentum, tempus quam nec, finibus libero. Pellentesque eu sollicitudin justo, sit amet aliquet
+                        eros. Proin vitae semper elit, sed eleifend libero. Donec sit amet gravida augue. Quisque mollis sollicitudin mauris,
+                        non laoreet turpis rhoncus non. Nam sed ex ullamcorper arcu consequat porttitor vitae id nisi.</h2>
+                    <button id="show-map">Consultar o mapa
+                        <svg class="arrow-icon"  version="1.1" id="Capa_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        x="0px" y="0px" viewBox="0 0 425.197 425.197" enable-background="new 0 0 425.197 425.197" xml:space="preserve">
+                        <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="80.193" y1="328.778" x2="342.536" y2="328.778"/>
+                        <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="327.527" y1="343.751" x2="327.527" y2="81.445"/>
+                        <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="80.193" y1="81.445" x2="327.527" y2="328.778"/>
+                        </svg>
+                    </button>
+                </div>
+            <p>Diseño y mapa web por mariamoure.info</p>
+        </div>
+
     </div>
 
     <div class="container">
@@ -32,8 +68,17 @@
 
         <!-- Panel derecho con lista -->
         <div class="right-panel" id="site-list">
+            <div class="right-panel-header">
+                        <button id="back-to-intro">
+                            <svg class="arrow-icon" version="1.1" id="Capa_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                            x="0px" y="0px" viewBox="0 0 425.197 425.197" enable-background="new 0 0 425.197 425.197"	 xml:space="preserve">
+                            <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="342.537" y1="96.418" x2="80.194" y2="96.418"/>
+                            <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="95.203" y1="81.445" x2="95.203" y2="343.751"/>
+                            <line fill="none" stroke="currentColor" stroke-width="45" stroke-miterlimit="10" x1="342.537" y1="343.751" x2="95.203" y2="96.418"/>
+                            </svg>
+                        Compostela Xadrez</button>
+            </div>
             <!-- Contenedor de items -->
-            <div class="items-wrapper"></div>
         </div>
 
     </div>

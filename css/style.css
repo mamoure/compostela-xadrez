@@ -55,53 +55,158 @@ html, body {
     height: 100%;
 }
 
+h1 {
+    margin: 0;           /* elimina márgenes superior e inferior */
+    padding: 0;          /* elimina cualquier padding */
+    font-size: inherit;  /* hereda el tamaño de la fuente del contenedor */
+    font-weight: normal; /* elimina negrita por defecto */
+    line-height: normal; /* normaliza la altura de línea */
+    color: inherit;      /* hereda el color del texto del contenedor */
+    font-family: inherit;/* hereda la tipografía del contenedor */
+}
+
+h2 {
+    margin: 0;      
+    padding: 0; 
+    font-size: inherit; 
+    font-weight: normal;
+    line-height: normal;
+    color: inherit;
+    font-family: inherit;
+}
+
+
+/*CURSOR AJEDREZ */
+/************************************************************************************************************************************/
+/* Cursor por defecto en toda la página */
+html, body, button, a, div, input, textarea {
+    cursor: url('../images/horse-white.png') 16 16, auto !important;
+}
+
+/* Cursor azul al pasar sobre elementos interactivos */
+button:hover,
+.item-name:hover,
+.circle-marker div:hover {
+    cursor: url('../images/horse-blue.png') 16 16, auto !important;
+}
+
+/* Opcional: quitar estilos nativos de botones que interfieran */
+button, input[type="button"], input[type="submit"] {
+    background: none;
+    border: none;
+    padding: 0;
+    appearance: none;
+}
+
 
 
 /* PANTALLA DE BIENVENIDA */
 /************************************************************************************************************************************/
-/* Pantalla de bienvenida */
-#welcome-screen {
-    position: fixed;
-    inset: 0;
-    background-color: #302683;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 10vh 20px;
-    z-index: 999;
-    transition: transform 1s ease, opacity 1s ease;
+/* Contenedor de todas las secciones de bienvenida */
+#intro-screens {
+    height: 100vh;           /* ocupa toda la ventana */
+    overflow-y: scroll;      /* permite scroll vertical */
+    scroll-snap-type: y mandatory; /* scroll tipo bloque solo aquí */
 }
 
+/* Cada sección */
+#welcome-screen,
+#second-screen {
+    scroll-snap-align: start;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Pantalla bienvenida azul*/
+#welcome-screen {
+    background-color: #302683;
+    color: #ffffff;
+    flex-direction: column;
+    text-align: center;
+}
+
+/* Pantalla bienvenida blanca */
+#second-screen {
+    background-color: #ffffff;
+    color: #302683;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+
+    background-image:
+        linear-gradient(to right, #2f26834b 1px, transparent 1px),
+        linear-gradient(to bottom, #2f26834b 1px, transparent 1px);
+
+    background-size: 200px 200px; /* tamaño de cada celda del grid */
+    background-position: 2.5vw 2.5vw;
+}
+
+/* Texto Compostela Xadrez*/
 #welcome-screen h1 {
     font-family: 'Dokument', sans-serif;
     width: 100%;                  /* ocupa todo el ancho */
     font-size: clamp(48px, 15vw, 300px); /* crece con la pantalla */
-    letter-spacing: -0.02em;
-    line-height: 0.9;  
+    letter-spacing: -0.03em;
+    line-height: 0.9 ;  
     color: #ffffff;
-    margin-top: auto;     /* empuja hacia abajo */
-    margin-bottom: 40px;  /* controla cercanía al botón */
     text-align: center;
 }
 
-#welcome-screen button {
-    font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(12px, 3vw, 20px);
+.scroll-arrow{
+    margin-top:5vw;
+    width: 1.5em;        /* Igual que la altura del texto */
+    height: 1.5em;       /* Proporcional */
+
+}
+
+/* Contenedor texto pantalla bienvenida blanca*/
+.second-content {
+    flex: 1; /* ocupa todo el espacio vertical disponible */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* centra verticalmente */
+    align-items: center;
+    text-align: center;
+}
+
+#second-screen h2 {
+    font-family: 'NeueHaasMedium', sans-serif;
+    font-size: clamp(12px, 2vw, 18px);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    margin: 0 10vw 5vw 10vw; /* separación controlada */
+}
+
+/* Boton Consultar o mapa*/
+#second-screen button {
+    font-family: 'NeueHaasMedium', sans-serif;
+    font-size: clamp(12px, 2vw, 18px);
+    letter-spacing: -0.01em;
     padding: 10px 20px;
-    margin-bottom: auto;  /* empuja hacia arriba */
-    cursor: pointer;
     background: none;
     border: none;
-    color: #ffffff;
+    color: #302683;
+    cursor: pointer;
 }
 
-/* Clase para animar fuera de la pantalla */
-#welcome-screen.hide {
-    transform: translateX(100%); /* se desplaza a la derecha */
-    opacity: 0;
-    pointer-events: none;        /* evita que siga capturando clicks */
+.arrow-icon {
+    width: 1em;        /* Igual que la altura del texto */
+    height: 1em;       /* Proporcional */
+    vertical-align: middle; /* Centra la flecha con el texto */
 }
 
+/* Texto diseño por maria*/
+#second-screen p {
+    font-family: 'NeueHaasRegular', sans-serif;
+    font-size: clamp(8px, 2vw, 14px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
+    letter-spacing: -0.01em;
+    color: #302683;
+    text-align: center;
+    margin-top: auto;   /* empuja el párrafo hacia el final del contenedor */
+}
 
 
 /*CONTENEDORES DE LA PÁGINA*/
@@ -146,137 +251,195 @@ html, body {
 
 /* Marcador activo (seleccionado) */
 .circle-marker div.active {
+    color: white;  
     background-color: #302683;
-    color: white;    
-
-    /* font-family heredada de .circle-marker div */
 }
 
 
 
 /*LISTADO DE LUGARES DONDE JUGAR AL AJEDREZ*/
 /************************************************************************************************************************************/
-/* Panel derecho */
+/* Panel derecho*/
 .right-panel {
     flex: 1;
-    box-sizing: border-box;
-    overflow-y: auto;      /* scroll vertical */
-    position: relative;     /* referencia para wrapper absoluto opcional */
-}
-
-.grid-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;  
-    background-image:
-        linear-gradient(to right, #2f268366 1px, transparent 1px),
-        linear-gradient(to bottom, #2f268366 1px, transparent 1px);
-    background-size: 150px 150px;
-    background-position: 20px 20px;
-    pointer-events: none; 
-    z-index: 0;
-}
-
-/* Wrapper que contiene los items y la cuadrícula */
-.items-wrapper {
-    position: relative;
-}
-
-/* Items encima de la cuadrícula */
-.site-item {
-    position: relative;
-    z-index: 1;
-    padding: 20px 5vw 20px 2vw;
+    overflow-y: auto;
     display: flex;
-    align-items: flex-start;
-    gap:0.5vw; /* separación entre columnas */
+    flex-direction: column;
 }
 
-.site-item:hover{
+/*Definición de la altura del header (botón para volver) */
+:root {
+    --right-header-height: 3vw;
+}
+
+
+/*Botón para volver a pantalla de bienvenida */
+.right-panel-header {
+    width: 100%;
+    height: var(--right-header-height);  /* altura definida */
+    min-height: var(--right-header-height); /* asegura que no se encoja */
+
+    position: sticky;
+    top: 0;
+    z-index: 10;
+
+    display: flex;
+    align-items: center; /* centra verticalmente el contenido */
+    padding-left: 2vw;
+
+    background: #ffffff;
+    border-bottom: #2f26834b solid 1px;
+
+    flex-shrink: 0; /* evita que el flex container lo reduzca */
+}
+
+#back-to-intro {
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: 'NeueHaasBold', sans-serif;
+    font-size: clamp(12px, 2vw, 18px);
+    letter-spacing: -0.01em;
+    color: #302683;
     cursor: pointer;
 }
 
-/* Item de lista activo */
-.site-item.active {
-    background-color: #302683; /* azul */
-    color: white;
+
+/* FILA DEL ITEM */
+.site-item-row {
+    display: flex;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    border-bottom: #2f26834b solid 1px;
+    scroll-margin-top: var(--right-header-height);
 }
 
-.site-item.active .item-id,
-.site-item.active .item-name,
-.site-item.active .item-address,
-.site-item.active .item-services,
-.site-item.active .route-btn {
-    color: white; /* asegura que todo el texto sea blanco */
+/* COLUMNAS */
+.item-col {
+    width: 0; /* Se ajusta según clase específica */
+    box-sizing: border-box;
+
+}
+
+/* Anchos relativos de cada columna */
+.item-col-1 {
+    width: 5%; 
+    border-right: #2f26834b solid 1px;
+}
+.item-col-2 {
+    position: relative;  /* necesario para que el botón se posicione respecto a esta columna */
+    width: 47.5%; 
+    border-right: #2f26834b solid 1px;
+    padding: 1vw;   /* pequeño padding para todo el contenido de la columna */
+    box-sizing: border-box; /* importante para que el padding no afecte al ancho */
+}
+
+.item-col-3 {
+    width: 47.5%;
+}
+
+
+/* Estilo del item activo */
+.site-item-row.active {
+    background-color: #302683;  /* color de fondo cuando está activo */
+}
+
+.site-item-row.active .item-id,
+.site-item-row.active .item-name,
+.site-item-row.active .item-address,
+.site-item-row.active .item-services,
+.site-item-row.active .route-btn {
+    color: white; 
+}
+
+
+/* Chips de servicios dentro del item activo */
+.site-item-row.active .service-chip {
+    color: white;            /* texto blanco */
+    border-color: white;     /* contorno blanco */
+    background-color: transparent; /* opcional, si quieres que el fondo siga transparente */
 }
 
 
 
 /*ITEM LISTA*/
 /************************************************************************************************************************************/
-/*Cabecera */
-.item-header {
-    flex: 0 0 auto;             /* ancho mínimo necesario */
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-}
-
-/*Body */
-.item-body {
-    flex: 1;                    /* ocupa todo el espacio restante */
-    display: flex;
-    flex-direction: column;      /* apilar elementos verticalmente */
-    align-items: flex-start;
-}
-
 .item-id {
-    font-family: 'NeueHaasMedium', sans-serif;
-    font-size: clamp(12px, 2vw, 18px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
+    font-family: 'NeueHaasRegular', sans-serif;
+    font-size: clamp(10px, 1.5vw, 16px); /* mínimo 10px, preferido 1.5% del ancho, máximo 16px */
     font-style: normal;
+    letter-spacing: -0.01em;
     color: #302683;
-    letter-spacing: 0.05em;
 }
 
 .item-name {
     font-family: 'NeueHaasBold', sans-serif;
+    font-size: clamp(15px, 3vw, 35px); /* mínimo 20px, crece con el ancho, máximo 45px */
     font-style: normal;   
-    font-size: clamp(20px, 5vw, 45px); /* mínimo 20px, crece con el ancho, máximo 45px */
-    line-height: 0.9; /* mejor usar relativo al tamaño de fuente */
+    letter-spacing: -0.05em;
     color: #302683;
+    line-height: 0.9; /* mejor usar relativo al tamaño de fuente */
+    padding-top: 0.5vw;
 }
 
 .item-address {
     font-family: 'NeueHaasMedium', sans-serif;
-    font-size: clamp(12px, 2vw, 18px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
+    font-size: clamp(10px, 1.5vw, 16px); /* mínimo 10px, preferido 1.5% del ancho, máximo 16px */
     font-style: normal;
+    letter-spacing: -0.01em;
     color: #302683;
-    letter-spacing: 0.01em;
     line-height: 1; /* mejor usar relativo al tamaño de fuente */
-    padding-top: 1vw;
+    padding-top: 0.5vw;
 }
 
 .item-services {
-    font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(8px, 2vw, 14px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
-    font-style: normal;
-    color: #302683;
-    letter-spacing: 0.01em;
-    padding-top: 1vw;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    padding-top: 0.5vw;
 }
 
-.route-btn {
-     background: none;    /* quitar estilos por defecto */
-    border: none; /* quitar estilos por defecto */
-    outline: none; /* quitar estilos por defecto */
+.service-chip {
     font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(8px, 2vw, 14px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
-    letter-spacing: 0.01em;
-    color: #ffffff;
-    background-color:#302683 ;
-    cursor: pointer;
-    margin-top:1.5vw;
-    padding: 0;
+    font-size: clamp(5px, 1.2vw, 10px);
+    color: #302683;
+    border: 1px solid #302683;
+    border-radius: 4px;
+    display: inline-block;
+    white-space: nowrap;
+    padding: 0.1vw;
 }
+
+
+.route-btn {
+    position: absolute;
+    bottom: 1vw;
+    right: 1vw;
+
+    display: flex;          /* 🔥 clave */
+    align-items: center;    /* centra vertical interno */
+    gap: 0.4em;
+
+    background: none;
+    border: none;
+    padding: 0;
+
+    font-family: 'NeueHaasBold', sans-serif;
+    font-size: clamp(8px, 1.5vw, 14px);
+    letter-spacing: -0.01em;
+    color: #302683;
+    cursor: pointer;
+}
+
+/* Flecha como llegar */
+.route-arrow {
+    width: 1em;
+    height: 1em;
+    display: block;   /* elimina espacio baseline */
+}
+
+
+
+
