@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-
+    // Definir las alturas de las filas
     showMapBtn.addEventListener('click', () => {
         container.style.display = 'flex';
         initMap(); // inicializa el mapa y crea filas
@@ -471,9 +471,6 @@ function initMap() {
             <span class="item-id">${point.id}</span>
             <div class="item-name">${point.name}</div>
             <div class="item-address">${point.address}</div>
-            <div class="item-services">
-                ${point.services.split(',').map(s => `<span class="service-chip">${s.trim()}</span>`).join('')}
-            </div>
             <button class="route-btn">Como chegar
                 <svg class="route-arrow"  version="1.1" id="Capa_4" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                 viewBox="0 0 425.197 425.197" enable-background="new 0 0 425.197 425.197" 	 xml:space="preserve">
@@ -482,6 +479,15 @@ function initMap() {
                 <line fill="none" stroke="currentColor" stroke-width="40" stroke-miterlimit="10" x1="80.193" y1="81.445" x2="327.527" y2="328.778"/>
                 </svg>
             </button>
+        `;
+
+        // Contenido en la columna 3 (vacío al inicio)
+        col3.innerHTML = `
+            <div class="item-services-container">
+                <div class="item-services">
+                    ${point.services.split(',').map(s => `<span class="service-chip">${s.trim()}</span>`).join('')}
+                </div>
+            </div>
         `;
 
         // Función abrir como llegar
@@ -496,29 +502,30 @@ function initMap() {
         itemRow.appendChild(col3);
         listContainer.appendChild(itemRow);
 
-        // Click en el marcador
-        marker.on('click', () => {
-            const markerDiv = marker.getElement().querySelector('div');
+        // Función activar item
+        function activateItem() {
+            // Desactivar el anterior
+            if (activeItemRow && activeItemRow !== itemRow) {
+                activeItemRow.classList.remove('active');
+                if (activeMarkerDiv) activeMarkerDiv.classList.remove('active');
+            }
 
-            // Desactivar anteriores
-            if (activeMarkerDiv && activeMarkerDiv !== markerDiv) activeMarkerDiv.classList.remove('active');
-            if (activeItemRow && activeItemRow !== itemRow) activeItemRow.classList.remove('active');
-
-            // Activar actuales
-            markerDiv.classList.add('active');
+            // Activar el actual
             itemRow.classList.add('active');
+            marker.getElement().querySelector('div').classList.add('active');
 
-            activeMarkerDiv = markerDiv;
             activeItemRow = itemRow;
+            activeMarkerDiv = marker.getElement().querySelector('div');
 
             itemRow.scrollIntoView({ behavior: 'smooth', block: 'start' });
             map.setView([point.lat, point.lng], 16, { animate: true });
-        });
+        }
 
-        // Click en el item
-        itemRow.addEventListener('click', () => {
-            marker.fire('click'); // simula click en marcador
-        });
+        // Click en marcador o fila
+        marker.on('click', activateItem);
+        itemRow.addEventListener('click', activateItem);
+
+
     });
 
 

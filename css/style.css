@@ -356,6 +356,24 @@ button, input[type="button"], input[type="submit"] {
     width: 47.5%;
 }
 
+/* Contenedor de la columna 3, oculto por defecto*/
+.item-col-3 .item-services-container {
+    display: none;       /* Oculto por defecto */
+    flex-wrap: wrap;
+    gap: 5px;
+    padding: 1vw;
+}
+
+.site-item-row.active .item-col-3 .item-services-container {
+    display: flex;       /* Se muestra solo cuando el item está activo */
+}
+
+/* Chips de servicios dentro del item activo */
+.site-item-row.active .service-chip {
+    color: white;            /* texto blanco */
+    border-color: white;     /* contorno blanco */
+    background-color: transparent; /* opcional, si quieres que el fondo siga transparente */
+}
 
 /* Estilo del item activo */
 .site-item-row.active {
@@ -371,12 +389,7 @@ button, input[type="button"], input[type="submit"] {
 }
 
 
-/* Chips de servicios dentro del item activo */
-.site-item-row.active .service-chip {
-    color: white;            /* texto blanco */
-    border-color: white;     /* contorno blanco */
-    background-color: transparent; /* opcional, si quieres que el fondo siga transparente */
-}
+
 
 
 
