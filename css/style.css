@@ -76,6 +76,7 @@ h2 {
 }
 
 
+
 /*CURSOR AJEDREZ */
 /************************************************************************************************************************************/
 /* Cursor por defecto en toda la página */
@@ -86,6 +87,7 @@ html, body, button, a, div, input, textarea {
 /* Cursor azul al pasar sobre elementos interactivos */
 button:hover,
 .item-name:hover,
+.scroll-arrow:hover,
 .circle-marker div:hover {
     cursor: url('../images/horse-blue.png') 16 16, auto !important;
 }
@@ -120,7 +122,7 @@ button, input[type="button"], input[type="submit"] {
     align-items: center;
 }
 
-/* Pantalla bienvenida azul*/
+/* Sección azul */
 #welcome-screen {
     background-color: #302683;
     color: #ffffff;
@@ -128,7 +130,7 @@ button, input[type="button"], input[type="submit"] {
     text-align: center;
 }
 
-/* Pantalla bienvenida blanca */
+/* Sección blanca */
 #second-screen {
     background-color: #ffffff;
     color: #302683;
@@ -137,14 +139,13 @@ button, input[type="button"], input[type="submit"] {
     flex-direction: column;
 
     background-image:
-        linear-gradient(to right, #2f26834b 1px, transparent 1px),
-        linear-gradient(to bottom, #2f26834b 1px, transparent 1px);
-
+        linear-gradient(to right, #2f268329 1px, transparent 1px),
+        linear-gradient(to bottom, #2f268329 1px, transparent 1px);
     background-size: 200px 200px; /* tamaño de cada celda del grid */
     background-position: 2.5vw 2.5vw;
 }
 
-/* Texto Compostela Xadrez*/
+/* Texto Compostela Xadrez */
 #welcome-screen h1 {
     font-family: 'Dokument', sans-serif;
     width: 100%;                  /* ocupa todo el ancho */
@@ -155,6 +156,7 @@ button, input[type="button"], input[type="submit"] {
     text-align: center;
 }
 
+/*Flecha bajar a sección blanca */
 .scroll-arrow{
     margin-top:5vw;
     width: 1.5em;        /* Igual que la altura del texto */
@@ -162,7 +164,7 @@ button, input[type="button"], input[type="submit"] {
 
 }
 
-/* Contenedor texto pantalla bienvenida blanca*/
+/* Contenedor texto sección blanca */
 .second-content {
     flex: 1; /* ocupa todo el espacio vertical disponible */
     display: flex;
@@ -172,6 +174,7 @@ button, input[type="button"], input[type="submit"] {
     text-align: center;
 }
 
+/* Texto explicativo */
 #second-screen h2 {
     font-family: 'NeueHaasMedium', sans-serif;
     font-size: clamp(12px, 2vw, 18px);
@@ -180,7 +183,7 @@ button, input[type="button"], input[type="submit"] {
     margin: 0 10vw 5vw 10vw; /* separación controlada */
 }
 
-/* Boton Consultar o mapa*/
+/* Boton Consultar o mapa */
 #second-screen button {
     font-family: 'NeueHaasMedium', sans-serif;
     font-size: clamp(12px, 2vw, 18px);
@@ -192,21 +195,23 @@ button, input[type="button"], input[type="submit"] {
     cursor: pointer;
 }
 
-.arrow-icon {
+/*Flecha ir al mapa */
+.map-arrow {
     width: 1em;        /* Igual que la altura del texto */
     height: 1em;       /* Proporcional */
     vertical-align: middle; /* Centra la flecha con el texto */
 }
 
-/* Texto diseño por maria*/
+/* Texto diseñado por maria */
 #second-screen p {
     font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(8px, 2vw, 14px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
+    font-size: clamp(6px, 2vw, 12px); /* mínimo 12px, preferido 2% del ancho, máximo 18px */
     letter-spacing: -0.01em;
     color: #302683;
     text-align: center;
     margin-top: auto;   /* empuja el párrafo hacia el final del contenedor */
 }
+
 
 
 /*CONTENEDORES DE LA PÁGINA*/
@@ -222,7 +227,7 @@ button, input[type="button"], input[type="submit"] {
 
 /*MAPA*/
 /************************************************************************************************************************************/
-/* Panel izquierdo*/
+/* Panel izquierdo */
 .left-panel {
     flex: 2;          /* 2/3 del ancho */
     min-height: 0;    /* importante para que flex calcule bien la altura */
@@ -259,7 +264,7 @@ button, input[type="button"], input[type="submit"] {
 
 /*LISTADO DE LUGARES DONDE JUGAR AL AJEDREZ*/
 /************************************************************************************************************************************/
-/* Panel derecho*/
+/* Panel derecho */
 .right-panel {
     flex: 1;
     overflow-y: auto;
@@ -267,13 +272,12 @@ button, input[type="button"], input[type="submit"] {
     flex-direction: column;
 }
 
-/*Definición de la altura del header (botón para volver) */
+/* Definición de la altura del header (botón para volver) */
 :root {
     --right-header-height: 3vw;
 }
 
-
-/*Botón para volver a pantalla de bienvenida */
+/* Contenedor header */
 .right-panel-header {
     width: 100%;
     height: var(--right-header-height);  /* altura definida */
@@ -293,6 +297,7 @@ button, input[type="button"], input[type="submit"] {
     flex-shrink: 0; /* evita que el flex container lo reduzca */
 }
 
+/* Botón volver a home */
 #back-to-intro {
     background: none;
     border: none;
@@ -302,6 +307,16 @@ button, input[type="button"], input[type="submit"] {
     letter-spacing: -0.01em;
     color: #302683;
     cursor: pointer;
+    display: flex;
+    align-items: flex-end;   /*  alinea por abajo */
+    gap: 0.4em;
+}
+
+/*Flecha volver a home */
+.home-arrow{
+    width: 1em;        /* Igual que la altura del texto */
+    height: 1em;       /* Proporcional */
+    display: block;   /* elimina baseline spacing */
 }
 
 
@@ -334,6 +349,7 @@ button, input[type="button"], input[type="submit"] {
     border-right: #2f26834b solid 1px;
     padding: 1vw;   /* pequeño padding para todo el contenido de la columna */
     box-sizing: border-box; /* importante para que el padding no afecte al ancho */
+    container-type: inline-size; /* defino la columna como contenedor para el tamaño de la tipo */
 }
 
 .item-col-3 {
@@ -368,7 +384,7 @@ button, input[type="button"], input[type="submit"] {
 /************************************************************************************************************************************/
 .item-id {
     font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(10px, 1.5vw, 16px); /* mínimo 10px, preferido 1.5% del ancho, máximo 16px */
+    font-size: clamp(7px, 8cqw, 16px);
     font-style: normal;
     letter-spacing: -0.01em;
     color: #302683;
@@ -376,7 +392,7 @@ button, input[type="button"], input[type="submit"] {
 
 .item-name {
     font-family: 'NeueHaasBold', sans-serif;
-    font-size: clamp(15px, 3vw, 35px); /* mínimo 20px, crece con el ancho, máximo 45px */
+    font-size: clamp(14px, 16cqw, 32px);
     font-style: normal;   
     letter-spacing: -0.05em;
     color: #302683;
@@ -386,7 +402,7 @@ button, input[type="button"], input[type="submit"] {
 
 .item-address {
     font-family: 'NeueHaasMedium', sans-serif;
-    font-size: clamp(10px, 1.5vw, 16px); /* mínimo 10px, preferido 1.5% del ancho, máximo 16px */
+    font-size: clamp(7px, 8cqw, 16px);
     font-style: normal;
     letter-spacing: -0.01em;
     color: #302683;
@@ -403,7 +419,7 @@ button, input[type="button"], input[type="submit"] {
 
 .service-chip {
     font-family: 'NeueHaasRegular', sans-serif;
-    font-size: clamp(5px, 1.2vw, 10px);
+    font-size: clamp(5.25px, 6cqw, 12px);
     color: #302683;
     border: 1px solid #302683;
     border-radius: 4px;
@@ -412,13 +428,12 @@ button, input[type="button"], input[type="submit"] {
     padding: 0.1vw;
 }
 
-
 .route-btn {
     position: absolute;
     bottom: 1vw;
     right: 1vw;
 
-    display: flex;          /* 🔥 clave */
+    display: flex;          /* clave */
     align-items: center;    /* centra vertical interno */
     gap: 0.4em;
 
@@ -427,7 +442,7 @@ button, input[type="button"], input[type="submit"] {
     padding: 0;
 
     font-family: 'NeueHaasBold', sans-serif;
-    font-size: clamp(8px, 1.5vw, 14px);
+    font-size: clamp(7px, 8cqw, 16px);
     letter-spacing: -0.01em;
     color: #302683;
     cursor: pointer;

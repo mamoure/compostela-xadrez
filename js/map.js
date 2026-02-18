@@ -38,6 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.querySelector('.container');
     const backBtn = document.getElementById('back-to-intro');
 
+
+    // Al hacer click en la flecha, hace scroll automático a sección blanca
+    const scrollArrow = document.querySelector('.scroll-arrow');
+    const secondScreen = document.getElementById('second-screen');
+
+    scrollArrow.addEventListener('click', () => {
+        secondScreen.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+    });
+
+
     showMapBtn.addEventListener('click', () => {
         container.style.display = 'flex';
         initMap(); // inicializa el mapa y crea filas
