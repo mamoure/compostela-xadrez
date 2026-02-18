@@ -1,5 +1,6 @@
-/*TIPOGRAFIA*/
-/************************************************************************************************************************************/
+/* =========================================
+   TIPOGRAFÍA
+========================================= */
 /* Fuente: Dokument */
 @font-face {
     font-family: 'Dokument';
@@ -46,8 +47,9 @@
 
 
 
-/*RESET BÁSICO*/
-/************************************************************************************************************************************/
+/* =========================================
+   RESET BÁSICO
+========================================= */
 /* Reset básico */
 html, body {
     margin: 0;
@@ -77,8 +79,9 @@ h2 {
 
 
 
-/*CURSOR AJEDREZ */
-/************************************************************************************************************************************/
+/* =========================================
+   CURSOR
+========================================= */
 /* Cursor por defecto en toda la página */
 html, body, button, a, div, input, textarea {
     cursor: url('../images/horse-white.png') 16 16, auto !important;
@@ -102,8 +105,9 @@ button, input[type="button"], input[type="submit"] {
 
 
 
-/* PANTALLA DE BIENVENIDA */
-/************************************************************************************************************************************/
+/* =========================================
+   PANTALLA BIENVENIDA
+========================================= */
 /* Contenedor de todas las secciones de bienvenida */
 #intro-screens {
     height: 100vh;           /* ocupa toda la ventana */
@@ -214,19 +218,25 @@ button, input[type="button"], input[type="submit"] {
 
 
 
-/*CONTENEDORES DE LA PÁGINA*/
-/************************************************************************************************************************************/
+/* =========================================
+   CONTENEDOR PRINCIPAL PAGINA WEB
+========================================= */
 /* Contenedor principal */
 .container {
-    display: none;      /*  OCULTO AL INICIO */
+    display: flex;      /* SIEMPRE flex */
+    flex-direction: row; /* Desktop horizontal */
     height: 100vh;
     width: 100%;
 }
 
+.container.hidden {
+    display: none;
+}
 
 
-/*MAPA*/
-/************************************************************************************************************************************/
+/* =========================================
+   PANEL IZQUIERDO - MAPA
+========================================= */
 /* Panel izquierdo */
 .left-panel {
     flex: 2;          /* 2/3 del ancho */
@@ -262,8 +272,9 @@ button, input[type="button"], input[type="submit"] {
 
 
 
-/*LISTADO DE LUGARES DONDE JUGAR AL AJEDREZ*/
-/************************************************************************************************************************************/
+/* =========================================
+   PANEL DERECHO - LISTADO 
+========================================= */
 /* Panel derecho */
 .right-panel {
     flex: 1;
@@ -295,6 +306,8 @@ button, input[type="button"], input[type="submit"] {
     border-bottom: #2f26834b solid 1px;
 
     flex-shrink: 0; /* evita que el flex container lo reduzca */
+
+    container-type: inline-size;
 }
 
 /* Botón volver a home */
@@ -303,24 +316,24 @@ button, input[type="button"], input[type="submit"] {
     border: none;
     padding: 0;
     font-family: 'NeueHaasBold', sans-serif;
-    font-size: clamp(12px, 2vw, 18px);
+    font-size: clamp(12px, 4cqw, 24px);
     letter-spacing: -0.01em;
     color: #302683;
     cursor: pointer;
     display: flex;
-    align-items: flex-end;   /*  alinea por abajo */
+    align-items: center;   /*  alinea por abajo */
     gap: 0.4em;
 }
 
-/*Flecha volver a home */
+/* Flecha volver a home */
 .home-arrow{
-    width: 1em;        /* Igual que la altura del texto */
+    width: 1em;        /* em unidad relativa de fuente del elemento padre*/
     height: 1em;       /* Proporcional */
     display: block;   /* elimina baseline spacing */
 }
 
 
-/* FILA DEL ITEM */
+/* Fila del item */
 .site-item-row {
     display: flex;
     width: 100%;
@@ -331,7 +344,7 @@ button, input[type="button"], input[type="submit"] {
     scroll-margin-top: var(--right-header-height);
 }
 
-/* COLUMNAS */
+/* Columnas */
 .item-col {
     width: 0; /* Se ajusta según clase específica */
     box-sizing: border-box;
@@ -375,6 +388,14 @@ button, input[type="button"], input[type="submit"] {
     background-color: transparent; /* opcional, si quieres que el fondo siga transparente */
 }
 
+.site-item-row.active .item-col-1 {
+    xborder-right: #ffffff39  solid 1px;
+}
+.site-item-row.active .item-col-2 {
+    xborder-right: #ffffff39 solid 1px;
+}
+
+
 /* Estilo del item activo */
 .site-item-row.active {
     background-color: #302683;  /* color de fondo cuando está activo */
@@ -390,11 +411,9 @@ button, input[type="button"], input[type="submit"] {
 
 
 
-
-
-
-/*ITEM LISTA*/
-/************************************************************************************************************************************/
+/* =========================================
+   ITEM DE LA LISTA
+========================================= */
 .item-id {
     font-family: 'NeueHaasRegular', sans-serif;
     font-size: clamp(7px, 8cqw, 16px);
@@ -407,9 +426,9 @@ button, input[type="button"], input[type="submit"] {
     font-family: 'NeueHaasBold', sans-serif;
     font-size: clamp(14px, 16cqw, 32px);
     font-style: normal;   
-    letter-spacing: -0.05em;
+    letter-spacing: -0.03em;
     color: #302683;
-    line-height: 0.9; /* mejor usar relativo al tamaño de fuente */
+    line-height: 0.9;
     padding-top: 0.5vw;
 }
 
@@ -419,7 +438,7 @@ button, input[type="button"], input[type="submit"] {
     font-style: normal;
     letter-spacing: -0.01em;
     color: #302683;
-    line-height: 1; /* mejor usar relativo al tamaño de fuente */
+    line-height: 1.1;
     padding-top: 0.5vw;
 }
 
@@ -469,5 +488,29 @@ button, input[type="button"], input[type="submit"] {
 }
 
 
+
+/* =========================================
+   RESPONSIVE MÓVIL
+========================================= */
+@media (max-width: 768px) {
+
+    .container {
+        flex-direction: column;
+    }
+
+    .left-panel {
+        flex: none;
+        height: 60vh;   /* 60% mapa */
+    }
+
+    .right-panel {
+        flex: none;
+        height: 40vh;   /* 40% listado */
+    }
+
+    .right-panel-header {
+        height: 45px; /* aumenta altura en móvil */
+    }
+}
 
 

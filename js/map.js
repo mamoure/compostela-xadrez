@@ -5,17 +5,17 @@ let map;
 
 
 // ===============================
-// FUNCIÓN PARA IGUALAR ALTURA DE FILAS
+// FUNCIÓN PARA IGUALAR ALTURA DE FILAS (solo se declara)
 // ===============================
 function equalizeRowsHeight() {
-    const rows = document.querySelectorAll('.site-item-row');
+    const rows = document.querySelectorAll('.site-item-row'); // busca los elementos con esa clase
     if (!rows.length) return;
 
-    const firstRow = rows[0];
-    const col2 = firstRow.querySelector('.item-col-2');
+    const firstRow = rows[0]; // selecciona la primera fila
+    const col2 = firstRow.querySelector('.item-col-2'); // selecciona la segunda columna de la primera fila
     if (!col2) return;
 
-    const width = col2.getBoundingClientRect().width;
+    const width = col2.getBoundingClientRect().width; // obtiene el ancho de esa columna
 
     // Forzar la altura exacta
     rows.forEach(row => {
@@ -31,18 +31,18 @@ function equalizeRowsHeight() {
 // ===============================
 // PANTALLA DE BIENVENIDA
 // ===============================
+
+// Ejecuta este bloque cuando el HTML esté cargado
 document.addEventListener('DOMContentLoaded', () => {
 
-    const introScreens = document.getElementById('intro-screens');
+    const introScreens = document.getElementById('intro-screens'); // guarda referncias del DOM
     const showMapBtn = document.getElementById('show-map');
     const container = document.querySelector('.container');
     const backBtn = document.getElementById('back-to-intro');
-
-
-    // Al hacer click en la flecha, hace scroll automático a sección blanca
     const scrollArrow = document.querySelector('.scroll-arrow');
     const secondScreen = document.getElementById('second-screen');
 
+    // Al hacer click en la flecha, hace scroll automático a sección blanca
     scrollArrow.addEventListener('click', () => {
         secondScreen.scrollIntoView({
             behavior: 'smooth',
@@ -50,20 +50,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Definir las alturas de las filas
+    // Botón consultar mapa
     showMapBtn.addEventListener('click', () => {
-        container.style.display = 'flex';
+        container.classList.remove('hidden'); // elimina la clase ocultar contenedor
         initMap(); // inicializa el mapa y crea filas
-        introScreens.style.display = 'none';
+        introScreens.style.display = 'none'; // elimina la pantalla de bienvenida
     });
 
+    // Botón volver home
     backBtn.addEventListener('click', () => {
-        container.style.display = 'none';
-        introScreens.style.display = 'block';
+        container.classList.add('hidden'); // añade la clase ocultar contenedor
+        introScreens.style.display = 'block'; // muestra pantalla de bienvenida
         introScreens.scrollTo({ top: 0, behavior: 'instant' });
     });
 
-    // Ajustar altura de filas al redimensionar ventana
+    // Ajustar altura de filas al redimensionar ventana cada vez que cambias el tamaño
     window.addEventListener('resize', () => {
         if (container.style.display !== 'none') {
             equalizeRowsHeight();
@@ -448,6 +449,8 @@ function initMap() {
 
     // Para cada punto
     points.forEach(point => {
+        
+        // Crear marcador
         const marker = L.marker([point.lat, point.lng], {
             icon: L.divIcon({
                 className: 'circle-marker',
