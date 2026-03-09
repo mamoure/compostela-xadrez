@@ -509,8 +509,8 @@ button, input[type="button"], input[type="submit"] {
         height: 40vh;   /* 40% listado */
     }
 
-    .right-panel-header {
-        height: 45px; /* aumenta altura en móvil */
+    :root {
+        --right-header-height: 45px;
     }
 }
 
