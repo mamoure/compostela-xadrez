@@ -495,23 +495,28 @@ button, input[type="button"], input[type="submit"] {
 ========================================= */
 @media (max-width: 768px) {
 
+    :root {
+        --right-header-height: 45px;
+    }
+
     .container {
         flex-direction: column;
     }
 
     .left-panel {
         flex: none;
-        height: 60vh;   /* 60% mapa */
+        height: 60vh;
     }
 
     .right-panel {
         flex: none;
-        height: 40vh;   /* 40% listado */
+        height: 40vh;
     }
 
-    :root {
-        --right-header-height: 45px;
+    .right-panel-header {
+        height: 45px;
     }
+
 }
 
 
